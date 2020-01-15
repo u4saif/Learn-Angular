@@ -1,0 +1,67 @@
+<app-top-bar></app-top-bar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<!--usingForloop-->
+<div *ngFor="let item of course">
+  {{item.item}} => {{item.id}}
+</div> 
+<!-- Forloop Ends-->
+
+<!--Using SwitchCase Satement-->
+  <ul class="nav nav-pills">
+    <li [class.active]="viewMode=='map'"><a (click)="viewMode='map'">MapMode</a></li>
+    <li [class.active]="viewMode=='list'"><a (click)="viewMode='list'">ListMode</a></li>
+  </ul>
+  <div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">This Content is under Map view</div>
+    <div *ngSwitchCase="'list'">List Content</div>
+    <div *ngSwitchDefault>Other</div>
+  </div>
+<!-- SwitchCase Satement Ends-->
+<!-- Track by ID-->
+<button (click)="Load()"> Load data</button>
+<div *ngFor="let item of fruite; trackBy: track">
+  {{item.name}}
+</div><br/>
+<!--End  Track by ID-->
+
+<!--Using using Change Dtection with ngFor  -->
+<button (click)="Add()">ADD Book</button>
+<div *ngFor='let i of books'>
+  {{i.id}} {{i.name}}
+  <button (click)="Remove(i)">Remove</button>
+
+</div>
+<!--Change Dtection with ngFor Ends-->
+
+<!--Leading * why we use-->
+<ng-template [ngIf]='books.length>0'>
+  <div> 
+    Couree are Aviable
+    {{books.length}}
+  </div>
+</ng-template>
+<ng-template [ngIf]='!(books.length>0)'>
+      No Book Added. 
+</ng-template>
+<!--End Leading * why we use-->
+
+<!--ng Class -->
+<span
+    class="glyphicon"
+    [class.glyphicon-star]="isSelected"
+    [class.glyphicon-star-empty]="!isSelected">
+
+</span>
+<button [style.backgroundColor]="canSave ? 'gray': 'deepskyblue'"
+        [style.color]="canSave? 'white': 'black'"
+        [style.fontWeight]="canSave? 'bold':'normal'" 
+        (click)="check()">
+Save
+</button>
+<!--Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
